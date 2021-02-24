@@ -12,6 +12,7 @@ const WorkExperience = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // combine all input data in to a single object
     const newExperience = {
       expEmployer: getEmployer,
       expYears: years,
@@ -20,7 +21,7 @@ const WorkExperience = () => {
       expLocation: location,
     }
 
-    // combine all input data in to a single object
+    // combine all previous experience along with the new experience object
     setResults( [ newExperience, ...results ] );
 
     setEmployer("");
