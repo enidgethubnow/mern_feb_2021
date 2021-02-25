@@ -42,6 +42,7 @@ const WorkExperience = (props) => {
   }
 
   // const test = (fieldName, minLength) => {
+    //  stateObj[fieldName].length < 1
   //   if (getEmployer.length < 1) {
   //     return <span>You must include an {fieldName}</span>
   //   } else if (getEmployer.length < minLength) {
