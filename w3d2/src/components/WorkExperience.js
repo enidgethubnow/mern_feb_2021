@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 
-const WorkExperience = () => {
+const WorkExperience = (props) => {
+  // The alternative props object looks like this after it is passed in from App.js
+  // {
+  //   propResults: results,   // state getter that was created in App.js
+  //   setResultsKey: setResults,  // state setter method creatd in App.js
+  // }
+  // destructure the key to a new name
+  // const { propResults: results, setResultsKey: setResults } = props;
+
+  const { results, setResults } = props;
   const [ getEmployer, setEmployer ] = useState("");
   const [ years, setYears ] = useState(0);
   const [ position, setPosition] = useState("");
   const [ salary, setSalary ] = useState(0);
   const [ location, setLocation ] = useState("");
-  const [ results, setResults ] = useState([]);
 
   // display the entire form at one time
   const handleSubmit = (e) => {
@@ -31,6 +39,16 @@ const WorkExperience = () => {
     setLocation("");
   }
 
+  // const test = (fieldName, minLength) => {
+  //   if (getEmployer.length < 1) {
+  //     return <span>You must include an {fieldName}</span>
+  //   } else if (getEmployer.length < minLength) {
+  //     return <span>employer names must be atleast {minLength} characters long</span>
+  //   } else {
+  //     return <span>Thank you for entering a {fieldName}</span>
+  //   }
+  // }
+
   return (
     <div>
       <h3>Tell us about your Experience!</h3>
@@ -44,10 +62,16 @@ const WorkExperience = () => {
             onChange={ (e) => setEmployer(e.target.value) }
           />
           {
-            getEmployer.length < 1 ? 
-              <span>You must include an employer</span>
-              : null
+            getEmployer.length < 1 ?
+              <span className="errorSpan">You must include an employer</span>
+              : getEmployer.length < 4 ?
+                <span className="errorSpan">employer names must be atleast 4 characters long</span>
+                : null
           }
+            {/* getEmployer.length < 10 ? 
+              test()
+                : <span>Thank you for entering an employer</span>
+              : null */}
         </div>
         <div>
           <label>Years of Experience:</label>
@@ -88,20 +112,6 @@ const WorkExperience = () => {
         </div>
         <button type="submit">Submit Experience</button>
       </form>
-
-    {/* // display the object in the bottom of this form */}
-      <h3>You typed in:</h3>
-      {
-        results.map((expObj, index) => (
-          <div>
-            <p>Employer: { expObj.expEmployer }</p>
-            <p>Years Experience: { expObj.expYears }</p>
-            <p>Position: { expObj.expPosition }</p>
-            <p>Salary: { expObj.expSalary }</p>
-            <p>Location: { expObj.expLocation }</p>
-          </div>
-        ))
-      }
     </div>
   )
 }
