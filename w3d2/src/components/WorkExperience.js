@@ -16,6 +16,8 @@ const WorkExperience = (props) => {
   const [ salary, setSalary ] = useState(0);
   const [ location, setLocation ] = useState("");
 
+  console.log("this is cool");
+
   // display the entire form at one time
   const handleSubmit = (e) => {
     e.preventDefault();
